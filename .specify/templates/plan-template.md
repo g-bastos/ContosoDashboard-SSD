@@ -31,7 +31,16 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Principle I — Service-First**: every new data-access or business-logic operation is
+  encapsulated in a service with a matching interface; no logic in Razor components.
+- [ ] **Principle II — Security-by-Design**: files stored outside `wwwroot`; GUID-based paths;
+  extension allowlist validated server-side; no internal errors exposed to UI.
+- [ ] **Principle III — Role-Based Authorization**: authorization enforced at middleware, page
+  attribute, AND service method; no page reachable without an `[Authorize]` or `<AuthorizeView>`.
+- [ ] **Principle IV — Data Integrity**: no raw SQL; all relationships configured in
+  `OnModelCreating`; `DeleteBehavior.Restrict` used where cascading deletes are undesirable.
+- [ ] **Principle V — Simplicity (YAGNI)**: no abstractions or helpers beyond what the spec
+  explicitly requires; no speculative generalization.
 
 ## Project Structure
 
