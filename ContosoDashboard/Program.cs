@@ -15,7 +15,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStat
 
 // Configure Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Configure Mock Authentication (Cookie-based for training purposes)
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -73,8 +73,7 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-    // Use HSTS even in development for training purposes
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();
 }
 
 // Add security headers
@@ -97,7 +96,6 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
